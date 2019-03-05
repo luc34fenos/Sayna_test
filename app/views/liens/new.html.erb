@@ -1,0 +1,10 @@
+<h1>Rendre le lien github</h1>
+
+<%= form_for @lien do |f| %>
+
+	<%= f.label :liengit, "le lien vers github" %>
+	<%= f.text_field :liengit %><br><br>
+
+	<%= f.submit "rendre le lien" %>
+
+<% end %>

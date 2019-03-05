@@ -1,0 +1,54 @@
+<h1>ACCUEIL</h1>
+
+<% if Date.current == last_projet_day.tomorrow.tomorrow %>
+	<h2>note</h2>
+	<p>voici les etudiantes qui ont perdue un joker au correction</p>
+	<% 3.times do |t| %>
+		<% if t == 0 %>
+			<p>ceux qui vont nos quitter</p>
+		<% else %>
+			<p>ceux qui n'ont plus que <%= t %> joker</p>
+		<% end %>
+		<% @hash.each do |w, k| %>
+			<% if k.joker == t %>
+				<li>
+					<%= k.username %>
+				</li>
+			<% end %>
+		<% end %>
+	<% end %>
+	<p>On vous soutient tous, Courage!!!</p>
+<% end %>	
+
+
+<% if (Date.current.day > (last_projet_day.day + 1) && Date.current.month >= last_projet_day.month && Date.current.year >= last_projet_day.year) && current_user.try(:admin?) %>
+	<%= link_to "jours de projet", project_path %>
+<% end %>
+
+<ul>
+	<% Liste.all.each do |k| %>
+		<h2>Projet du <%= k.lejour.to_date %></h2>
+		<% @lien.each do |l| %>
+			<% if l.liste_id == k.id %>
+				<li>
+					Lien github : <%= l.liengit %> : <%= User.find(Student.find(l.student_id).user_id).username %> : <%= if ((Student.find(l.student_id).user_id == current_user.id) && (l.liste.lejour.to_date == Date.current)) then link_to "editer", edit_lien_path(l.id) end %>
+				</li>
+			<% end %>
+		<% end %>
+	<% end %>
+</ul>
+
+
+<% unless current_user.try(:admin?) %>
+	<% if date_valid? && !Lien.find_by(student_id: Student.find_by(user_id: current_user.id).id, liste_id: Liste.last) %>
+		<%= link_to "lien github", new_lien_path %>
+	<% else %>
+		<mark>Ooouuuups!!! desolée. Le temps est ecoulé</mark>
+	<% end %>
+	<br><br>
+<% end %>
+<% if correction_date %>
+	<%= link_to "jours de correction", correction_path %>
+<% else %>
+	<mark>Bah... C'est pas encore le jours de correction non!!!</mark>
+<% end %>

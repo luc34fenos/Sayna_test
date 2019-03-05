@@ -1,0 +1,16 @@
+<h1>Coworker</h1>
+
+<div class="double">
+	<div class="left">
+			<p>DigitalWorker</p>
+	</div>
+	<div class="right">
+		<div class="worker">
+			<ul>
+				<% @user.each do |user| %>
+					<li><%=  user.username %> </li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

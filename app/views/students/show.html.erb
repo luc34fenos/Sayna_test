@@ -1,0 +1,15 @@
+<h1>profil de <%= @student.lastname %></h1><br><br>
+
+
+<p>Nom : <%= @student.firstname %></p><br>
+
+<p>Prenom : <%= @student.lastname %></p><br>
+
+<p>Date de naissance : <%= @student.datenais %></p><br>
+
+<p>Ville actuelle : <%= @student.ville %></p><br>
+
+<% if @student.user_id == current_user.id %>
+	<%= link_to "editer le profil", edit_student_path %>
+	<%= link_to "effacer le compte", @student, method: :delete, data: {confirm: "voullez vous vriament effacer ce compte"} %>
+<% end %>

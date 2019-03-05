@@ -1,0 +1,12 @@
+<h1>Editer le lien github</h1>
+
+<%= form_for @lien do |f| %>
+
+	<%= f.label :liengit, "le lien vers github" %>
+	<%= f.text_field :liengit %><br><br>
+
+	<%= f.submit "editer le lien" %>
+
+<% end %>
+
+<%= link_to "effacer", @lien, method: :delete, data: {confirm: "etes vous sur de vouloir effacer ce lien"} %>

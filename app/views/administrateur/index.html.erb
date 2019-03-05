@@ -1,0 +1,50 @@
+<style type="text/css">
+	
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.double {
+		margin: 5px 40px;
+		display: flex;
+	}
+
+	.left {
+		display: block;
+		width: 320px;
+		border: 2px solid black;
+		border-radius: 10px;
+		height: 420px;
+		background-color: lightblue;
+	}
+
+	li {
+		list-style-type: none;
+	}
+
+	a {
+		text-decoration: none;
+		font-size: bold;
+	}
+
+</style>
+
+<h1>page administrateur</h1>
+
+<div class="double">
+	<div class="left">
+		<ul>
+			<li><p>DigitalWorker</p></li>
+		</ul>
+	</div>
+	<div class="right">
+		<div class="worker">
+			<ul>
+				<% @user.each do |users| %>
+					<li><%= link_to users.username, profil_path(users.id) %> : <%= button_to "effacer", registration_path(users), data: { confirm: "Are you sure?" }, method: :delete %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

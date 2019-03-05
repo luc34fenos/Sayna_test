@@ -1,0 +1,13 @@
+<h1>contact page</h1>
+
+<form action="/sendmail" method="post">
+	<input type="hidden" name="authenticity_token" value="authenticity_token_key">
+	
+	<input type="text" name="user[name]" placeholder="votre nom complet" />
+	<br>
+	<input type="email" name="user[email]" placeholder="votre email">
+	<br>
+	<textarea style="width: 320px; height: 120px" name="user[body]" ></textarea>
+	<br>
+	<button type="submit" >envoyer</button>
+</form>

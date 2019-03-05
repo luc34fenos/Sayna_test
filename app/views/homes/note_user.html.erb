@@ -1,0 +1,46 @@
+<h1>noter un etudiant</h1>
+
+<form action="/note" method="post">
+	<input type="hidden" name="authenticity_token" value="authenticity_token_key">
+	<input type="hidden" name="user_id" value=<%= @user_id %> >
+	<input type="hidden" name="correcteur_id" value=<%= current_user.id %> >
+	<fieldset>
+		<legend>A propos</legend>
+		<input type="checkbox" name="user[note_1]"/>
+		<label for="user[note_1]">Est-ce que le projet marche bien?</label><br>
+
+		<input type="checkbox" name="user[note_2]"/>
+		<label for="user[note_2]">Est-ce que le projet repond au problèmatique dans énnoncé?</label><br>
+
+		<input type="checkbox" name="user[note_3]"/>
+		<label for="user[note_3]">Le "readme" est bien fait</label><br>
+	</fieldset>
+	<fieldset>
+		<legend>Le code</legend>
+		<input type="checkbox" name="user[note_4]"/>
+		<label for="user[note_4]">est)ce qu'il y a trop de repetition des bloc de code</label><br>
+
+		<input type="checkbox" name="user[note_5]"/>
+		<label for="user[note_5]">lisibilité du code(commentaire, espace et tabulation)</label><br>
+
+		<input type="checkbox" name="user[note_6]"/>
+		<label for="user[note_6]">longueur du code(simple et efficace)</label><br>
+
+		<input type="checkbox" name="user[note_7]"/>
+		<label for="user[note_7]">code sans ambiguité:</label><br>
+	</fieldset>
+	<fieldset>
+		<legend>Le vue</legend>
+
+		<input type="checkbox" name="user[note_8]"/>
+		<label for="user[note_8]">presentation du vue</label><br>
+
+		<input type="checkbox" name="user[note_9]"/>
+		<label for="user[note_9]">fautes de francais</label><br>
+
+		<input type="checkbox" name="user[note_10]"/>
+		<label for="user[note_10]">Regle d'ecriture du language</label><br>
+			
+	</fieldset>
+	<input type="submit" value="envoyer">
+</form>

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  liengit: MyString
+  liste: one
+
+two:
+  liengit: MyString
+  liste: two

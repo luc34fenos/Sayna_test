@@ -1,0 +1,23 @@
+<h1>editer le compte etudiant</h1>
+
+<%= form_for @student do |s| %>
+
+	<%= s.label "Nom", :firstname %>
+	<%= s.text_field :firstname %><br><br>
+
+	<%= s.label "Prenom", :lastname %>
+	<%= s.text_field :lastname %><br><br>
+
+	<%= s.label "Date de naissance", :datenais %>
+	<%= s.text_field :datenais, placeholder: "dd-mm-yyyy" %><br><br>
+
+	<%= s.label "Ville actuelle", :ville %>
+	<%= s.text_field :ville %><br><br>
+
+	<%= s.submit "Editer" %>
+	
+<% end %>
+
+<% if @student.user_id == current_user.id %>
+	<%= link_to "effacer le compte", @student, method: :delete, data: {confirm: "voullez vous vriament effacer ce compte"} %>
+<% end %>

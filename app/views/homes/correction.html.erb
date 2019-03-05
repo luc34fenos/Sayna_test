@@ -1,0 +1,42 @@
+<h1>Jour du correction</h1>
+<% unless current_user.try(:admin?) %>
+<% h = no_admin.key(Student.find_by(user_id: current_user.id)) %>
+	<% if Lien.find_by(student_id: no_admin[@hash[0]].id) %>
+		<%= Lien.find_by(student_id: no_admin[@hash[0]].id).liengit %> :
+		<% if ((no_admin[@hash[0]].correcteur1 == h && no_admin[@hash[0]].noted1 == false) || (no_admin[@hash[0]].correcteur2 == h && no_admin[@hash[0]].noted2 == false)) %>
+			<%= link_to "noter", note_path(id: @hash[0]) %>
+		<% end %>
+	<% else %>
+		<p>pas de lien donnee</p>
+	<% end %> <br><br>
+
+	<% if Lien.find_by(student_id: no_admin[@hash[1]].id) %>
+		<%= Lien.find_by(student_id: no_admin[@hash[1]].id).liengit %> :
+		<% if ((no_admin[@hash[1]].correcteur1 == h && no_admin[@hash[1]].noted1 == false) || (no_admin[@hash[1]].correcteur2 == h && no_admin[@hash[1]].noted2 == false)) %>
+			<%= link_to "noter", note_path(id: @hash[1]) %>
+		<% end %>
+	<% else %>
+		<p>pas de lien donnee</p>
+	<% end %><br><br>
+	=> CORRECTEUR => <%= current_user.username %>
+<% else %>
+	<ul>
+	<% @hash.each do |k, v| %>
+		<li>
+			Etudiant n: <%= v[0] %> : <%= no_admin[v[0]].lastname %> <%= no_admin[v[0]].firstname %> :
+				<input type="checkbox" 
+					<% if ((no_admin[v[0]].correcteur1 == k && no_admin[v[0]].noted1 == true) || (no_admin[v[0]].correcteur2 == k && no_admin[v[0]].noted2 == true)) %>
+						checked="checked"
+					<% end %> 
+				name="<%= v[0] %>">
+			et n: <%= v[1] %> : <%= no_admin[v[1]].lastname %> <%= no_admin[v[1]].firstname %> :
+				<input type="checkbox" 
+					<% if ((no_admin[v[1]].correcteur1 == k && no_admin[v[1]].noted1 == true) || (no_admin[v[1]].correcteur2 == k && no_admin[v[1]].noted2 == true)) %>
+						checked="checked"
+					<% end %>
+				 name="<%= v[1] %>">
+			=> CORRECTEUR => Etudiant n: <%= k %>
+		</li>
+	<% end %>
+	</ul>
+<% end %>

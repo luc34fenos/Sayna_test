@@ -1,0 +1,20 @@
+<h1>S'inscrire en tant que etudiant</h1>
+
+
+<%= form_for @student do |s| %>
+
+	<%= s.label "Nom", :firstname %>
+	<%= s.text_field :firstname %><br><br>
+
+	<%= s.label "Prenom", :lastname %>
+	<%= s.text_field :lastname %><br><br>
+
+	<%= s.label "Date de naissance", :datenais %>
+	<%= s.text_field :datenais, placeholder: "dd-mm-yyyy" %><br><br>
+
+	<%= s.label "Ville actuelle", :ville %>
+	<%= s.text_field :ville %><br><br>
+
+	<%= s.submit "S'inscrire" %>
+
+<% end %>

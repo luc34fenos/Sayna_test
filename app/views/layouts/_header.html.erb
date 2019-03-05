@@ -1,0 +1,28 @@
+<header>
+	<%= link_to "Contact", contact_path %>
+	<%= link_to "how it works", works_path %>
+	<% if current_user.try(:admin?) %>
+		
+		<%= link_to 'gere', rails_admin_path %>	
+	<% end %>
+	<% if user_signed_in? %>
+		<% unless current_user.try(:admin?) %>
+			<%= link_to "Digital Workers", coworker_path %>
+			<% if s = Student.find_by(user_id: current_user.id) %>
+				<%= link_to "profil etudiant", student_path(s.id) %>
+				<%= link_to "pour les eleves", part_path %>
+			<% else %>
+				<%= link_to "devenir etudiant", new_student_path %>	
+			<% end %>
+		<% else %>
+			<%= link_to "pour les eleves", part_path %>
+		<% end %>
+		<%= link_to "SaynaLover", lovers_path %>
+		<%= link_to "Programme", program_path %>
+		<%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+		<%= current_user.email %>
+	<% else %>
+		<%= link_to 'Sign In', new_user_session_path %>
+		<%= link_to 'Sign Up', new_user_registration_path %>
+	<% end %>			
+<header>
